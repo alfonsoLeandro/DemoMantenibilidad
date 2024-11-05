@@ -9,6 +9,12 @@ apiKey = 'AIzaSyD4mPl3-Fo9uN7xApXcM4qu0A3qZZ3vJ4U'
 # Global variable for tasks (bad practice: global state)
 tasks=[]  # Stores tasks without any structure or database
 
+def SUMA_Y_RESTA(a,b,c):
+    first = (a+b+c)
+    second=10 +a/ 2
+    total =second-first
+    return total
+
 @app.route('/t', methods=['POST'])
 def p():
     # Bad naming: vague variable names, unclear method name
