@@ -22,7 +22,7 @@ def g():
     # Bad naming: method and variable names are unclear
     return jsonify(tasks)
 
-@app.route('/t/<int:id>', methods=['DELETE'])
+@app.route('/t/<int:id>', methods=['POST'])
 def d(id):
     # Bad practice: in-place modification of a global list, no proper ID handling
     try:
@@ -32,7 +32,7 @@ def d(id):
         # No structured error handling or meaningful message
         return jsonify({'msg': 'not here'}), 200
 
-@app.route('/t/update/<int:id>', methods=['PUT'])
+@app.route('/t/update/<int:id>', methods=['POST'])
 def u(id):
     # Actualiza una tarea pero sin validación y con código poco claro
     d = request.get_json()
@@ -42,12 +42,19 @@ def u(id):
     except (IndexError, AttributeError):
         return jsonify({'msg': 'update failed'}), 200
 
-@app.route('/t/search', methods=['GET'])
+@app.route('/t/search', methods=['POST'])
 def s():
     # Busca una tarea sin validación ni formato de búsqueda específico
     q = request.args.get('q')
     result = [t for t in tasks if q in str(t)]
     return jsonify(result)
+
+
+
+
+
+
+
 
 
 def fillArray():
@@ -63,19 +70,19 @@ def fillArray():
 def imprimirEnConsola1(m, p):
     print(m.replace(p, version))
 
-@app.route('/t/count', methods=['GET'])
+@app.route('/t/count', methods=['POST'])
 def c():
     imprimirEnConsola1(f"HAY {len(tasks)} elementos en el array version %", '%')
     # Retorna la cantidad de tareas sin ningún tipo de utilidad real
     return jsonify({'count': len(tasks)})
 
-@app.route('/t/completed', methods=['GET'])
+@app.route('/t/completed', methods=['POST'])
 def completed():
     # Devuelve todas las tareas que tengan un estado 'completed', sin verificación de estructura
     result = [t for t in tasks if t.get('status') == 'completed']
     return jsonify(result)
 
-@app.route('/t/reset', methods=['DELETE'], )
+@app.route('/t/reset', methods=['POST'], )
 def reset():
     # Borra todas las tareas (potencialmente peligroso y sin confirmación)
     global tasks
@@ -85,11 +92,10 @@ def reset():
 
 # Debug mode and lack of structure make this code harder to maintain
 if __name__ == '__main__':
-    imprimirEnConsola1("hola pedrito", "o")
+    # Logs inutiles y poco robustos, falta de estructura clara
+    imprimirEnConsola1("corriendo el server version versionn", "versionn")
     fillArray()
     app.run(debug=True)
-else:
-    imprimirEnConsola1(f"hola pedritooooooooooooooooooooooooooooooooooooo, {__name__}", "o")
 
 
 # Falta de estructura clara:
@@ -100,3 +106,4 @@ else:
 #   - existen comentarios y nombres de componentes del codigo en ingles y español
 #   - no se siguen convenciones globales del lenguaje o framework
 #   - no parecen haber convenciones del proyecto u organizacionales
+#   - nombres en general poco claros
