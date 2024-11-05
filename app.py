@@ -40,7 +40,7 @@ def u(id):
         tasks[id].update(d)  # Asume que `tasks[id]` es un diccionario, sin validación
         return jsonify({'msg': 'updated'})
     except (IndexError, AttributeError):
-        return jsonify({'msg': 'update failed'}), 200
+        return jsonify({'mensaje': 'update failed'}), 200
 
 @app.route('/t/search', methods=['POST'])
 def s():
