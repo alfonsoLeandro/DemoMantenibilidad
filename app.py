@@ -48,40 +48,6 @@ def u(id):
     except (IndexError, AttributeError):
         return jsonify({'msg': 'update failed'}), 200
 
-@app.route('/t/search', methods=['POST'])
-def s():
-    # Busca una tarea sin validación ni formato de búsqueda específico
-    q = request.args.get('q')
-    result = [t for t in tasks if q in str(t)]
-    return jsonify(result)
-
-
-
-
-
-
-
-
-
-def fillArray():
-    tasks.append({
-        "id": 1,
-        "nombre": "tarea1"
-    })
-    tasks.append({
-        "id": 1,
-        "descripcion": "tarea1"
-    })
-
-def imprimirEnConsola1(m, p):
-    print(m.replace(p, version))
-
-@app.route('/t/count', methods=['POST'])
-def c():
-    imprimirEnConsola1(f"HAY {len(tasks)} elementos en el array version %", '%')
-    # Retorna la cantidad de tareas sin ningún tipo de utilidad real
-    return jsonify({'count': len(tasks)})
-
 @app.route('/t/completed', methods=['POST'])
 def completed():
     # Devuelve todas las tareas que tengan un estado 'completed', sin verificación de estructura
