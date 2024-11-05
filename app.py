@@ -95,6 +95,19 @@ def reset():
     tasks = []
     return jsonify({'msg': 'all tasks deleted'})
 
+def suma_yResata(a, b, c):
+    first = (a + b + c)
+    second = 10 + a / 2
+    total = first - second
+    return total
+
+@app.route('/calculadora')
+def calculadora():
+    a = int(request.args.get('a', 0))
+    b = int(request.args.get('b', 1))
+    c = int(request.args.get('c', 2))
+    return str(suma_yResata(a, b, c))
+
 
 # Debug mode and lack of structure make this code harder to maintain
 if __name__ == '__main__':
