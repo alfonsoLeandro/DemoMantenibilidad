@@ -32,6 +32,40 @@ def d(id):
         # No structured error handling or meaningful message
         return jsonify({'msg': 'not here'}), 200
 
+@app.route('/t/update/<int:id>', methods=['POST'])
+def u(id):
+    # Actualiza una tarea pero sin validación y con código poco claro
+    d = request.get_json()
+    try:
+        tasks[id].update(d)  # Asume que `tasks[id]` es un diccionario, sin validación
+        return jsonify({'msg': 'updated'})
+    except (IndexError, AttributeError):
+        return jsonify({'msg': 'update failed'}), 200
+
+@app.route('/t/search', methods=['POST'])
+def s():
+    # Busca una tarea sin validación ni formato de búsqueda específico
+    q = request.args.get('q')
+    result = [t for t in tasks if q in str(t)]
+    return jsonify(result)
+
+@app.route('/t/update/<int:id>', methods=['POST'])
+def u(id):
+    # Actualiza una tarea pero sin validación y con código poco claro
+    d = request.get_json()
+    try:
+        tasks[id].update(d)  # Asume que `tasks[id]` es un diccionario, sin validación
+        return jsonify({'msg': 'updated'})
+    except (IndexError, AttributeError):
+        return jsonify({'msg': 'update failed'}), 200
+
+@app.route('/t/search', methods=['POST'])
+def s():
+    # Busca una tarea sin validación ni formato de búsqueda específico
+    q = request.args.get('q')
+    result = [t for t in tasks if q in str(t)]
+    return jsonify(result)
+
 
 
 
