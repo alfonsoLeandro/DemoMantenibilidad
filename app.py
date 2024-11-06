@@ -122,8 +122,11 @@ if __name__ == '__main__':
 #   - hay metodos que no son endpoints mezclados entre los endpoints
 #   - todos los endpoints coexisten en el mismo archivo
 #   - todos los endpoints son POSTs
+#   - no hay variables de entorno separadas del codigo, lo que conlleva a desplegar el codigo de vuelta cada vez que se cambien las credenciales
 # Falta de consistencia:
 #   - existen comentarios y nombres de componentes del codigo en ingles y español
 #   - no se siguen convenciones globales del lenguaje o framework
 #   - no parecen haber convenciones del proyecto u organizacionales
 #   - nombres en general poco claros
+#   - errores en la indentacion o en el uso de tabs, espacios, y/o saltos de linea
+
